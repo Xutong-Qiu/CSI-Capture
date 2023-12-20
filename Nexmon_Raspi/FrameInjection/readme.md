@@ -136,3 +136,58 @@ sudo cp brcmfmac_5.10.y-nexmon/brcmfmac.ko /lib/modules/5.10.63-v7+/kernel/drive
 sudo reboot
 ```
 
+
+## D) Injection example
+
+### 1. Transfer the injection example to the Raspberry Pi and compile it
+```
+gcc -O2 -o inject inject.c
+```
+
+### 2. Enable WiFi monitor mode 
+
+#### Run the quick script directly:
+```
+./enable_monitormode.sh
+```
+#### Or run the detailed commands separately:
+```
+sudo wpa_cli terminate
+sudo ifconfig wlan0 down
+sudo iw phy `iw dev wlan0 info | gawk '/wiphy/ {printf "phy" $2}'` interface add mon0 type monitor
+sudo ifconfig mon0 up
+```
+
+Note: if meeting errors like "Wi-Fi is currently blocked by rfkill", use raspi-config (```sudo raspi-config```) to set the country first.
+
+
+### 3. Set the channel and inject beacon frames
+#### Run the quick script to set the channel and interval directly:
+```
+./inject_beaconframes channel interval_ms
+```
+An example is ```./inject_beaconframes.sh 36 10```.
+
+Note: the delay/interval is roughly estimated, doesn't mean the rate is exactly 100 Hz.
+
+#### OR run the detailed commands separately:
+- Set the channel
+```
+sudo iwconfig mon0 channel 1
+```
+
+- Inject one beacon
+
+```
+sudo ./inject -i mon0
+```
+
+- Inject beacons every 100 ms
+```
+sudo ./inject -i mon0 -d 100 -l
+```
+
+Note: press CTRL+C to stop
+Note: a Wifi network with SSID "DEMO" should be visible by other WiFi devices.
+
+
