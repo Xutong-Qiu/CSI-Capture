@@ -6,7 +6,7 @@ Based on the [Nexmon CSI tool](https://github.com/nexmonster/nexmon_csi/tree/mas
 
 ## B) Usage
 ### 1. Quick setup
-- On the AP: Load the modified driver. This can be done **only once after a reboot**, reloading twice can crash the AP. To reload the driver enter the AP  using ssh, then:
+- On the AP: Load the modified driver. This can be done **only once after a reboot**, reloading twice can crash the AP.
   ```
   ./reload_5GHz.sh
      ```
