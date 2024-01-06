@@ -2,10 +2,14 @@
 Based on the [Nexmon CSI tool](https://github.com/nexmonster/nexmon_csi/tree/master).
 
 ## A) Installation
+### Option 1: Using pre-built binaries
+Follow the instructions here: [link](https://github.com/nexmonster/nexmon_csi/discussions/2).
 
+### Option 2: Building the binaries from sources if you need to modify the source code
+Follow the instructions here: [link](https://github.com/nexmonster/nexmon_csi/discussions/7).
 
 ## B) Usage
-### 1. Quick setup
+### Quick setup
 - On the AP: Load the modified driver. This can be done **only once after a reboot**, reloading twice can crash the AP.
   ```
   ./reload_5GHz.sh
@@ -27,8 +31,6 @@ Based on the [Nexmon CSI tool](https://github.com/nexmonster/nexmon_csi/tree/mas
     Some examples:
     - ```./quick_setup_livestream_5GHz.sh 36 80 1 1```
     - ```./quick_setup_livestream_5GHz.sh 36 80 3 1 11:22:33:44:55:66 0x80```
-
-### 2. Detailed commands
 
 
 
