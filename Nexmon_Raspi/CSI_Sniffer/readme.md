@@ -82,13 +82,13 @@ The script should take about a minute to run, reboot when it's done and go to th
     KuABEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
     ```
     `mcp` supports several other features like filtering data by Mac IDs or by FrameControl byte. Run `mcp -h` to see all available options.
-2. `ifconfig wlan0 up`
+2. `ifconfig wlan0 up` (may need sudo permission)
 3. `nexutil -Iwlan0 -s500 -b -l34 -vKuABEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==`
-4. `iw dev wlan0 interface add mon0 type monitor`
-5. `ip link set mon0 up`
+4. `iw dev wlan0 interface add mon0 type monitor` (may need sudo permission)
+5. `ip link set mon0 up` (may need sudo permission)
 
 Collect CSI by listening on socket 5500 for UDP packets. One way to do this is using tcpdump:
 `tcpdump -i wlan0 dst port 5500`. You can store 1000 CSI samples in a pcap file like this:
-`tcpdump -i wlan0 dst port 5500 -vv -w output.pcap -c 1000`.
+`tcpdump -i wlan0 dst port 5500 -vv -w output.pcap -c 1000`. (may need sudo permission)
 
 You will not be able to use the built in WiFi chip to connect to your WLAN, so use an Ethernet cable.
