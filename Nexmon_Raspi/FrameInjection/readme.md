@@ -44,7 +44,7 @@ The default user name is "pi" and the default password is "raspberry".
 - Initial setup using ```sudo raspi-config```:
   - Set up a new password.
   - Set up wireless network access: country, SSID, password.
-- Set up SSH keys for automatic login
+- Set up SSH keys for automatic login (host PC)
   - ssh-copy-id pi@itsipaddr
 
 ### 2. Copy Linux headers for 5.10.63-v7+ kernel.
