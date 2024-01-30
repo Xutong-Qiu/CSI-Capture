@@ -39,12 +39,14 @@ The default user name is "pi" and the default password is "raspberry".
 ## B) Header installation
 ### 1. Perform initial setup.
 - Insert the SD card into your Raspberry Pi 3B+ and boot it.
-- Connect the Pi using an Ethernet cable.
-- Get its LAN IP address using LANScan apps/tools.
-- ssh pi@ipaddr
+- Connect the Pi to a router using an Ethernet cable.
+- Get its LAN IP address using LANScan apps/tools or check on the router.
+- ssh pi@itsipaddr
 - Initial setup using ```sudo raspi-config```:
   - Set up a new password.
   - Set up wireless network access: country, SSID, password.
+- Set up SSH keys for automatic login
+  - ssh-copy-id pi@itsipaddr
 
 ### 2. Copy Linux headers for 5.10.63-v7+ kernel.
 Note: ```sudo apt install raspberrypi-kernel-headers``` will install newer headers incompatible with the kernel/Nexmon codes. Therefore, we manually download and copy the headers.
