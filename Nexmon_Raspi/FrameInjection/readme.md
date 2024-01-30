@@ -13,22 +13,21 @@ wget https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2021-1
 ```
 unzip 2021-10-30-raspios-bullseye-armhf.zip
 ```
-```
-sudo dd if=2021-10-30-raspios-bullseye-armhf.img of=/dev/$SDCARD bs=1M conv=fsync
-```
-
-Note: replace $SDCARD with the device node name corresponding to the sdcard on your host PC.
-
-
-#### On MacBook
-- Check the disks:
+Insert the SD card, and check the disk.
 ```
 diskutil list
 ```
-- If getting the "dd: /dev/disk4: Resource busy" error:
+Unmount the SD card:
 ```
-diskutil unmountDisk /dev/disk4
+diskutil unmountDisk /dev/diskX
 ```
+Write the image:
+```
+sudo dd if=2021-10-30-raspios-bullseye-armhf.img of=/dev/diskX bs=1M conv=fsync status=progress
+```
+
+Note: replace diskX with the device node name corresponding to the sdcard on your host PC.
+
 
 ### 3. SSH setup.
 Create an empty file called ssh, without any extension, on the boot partition of the SD card. This enables SSH access.
