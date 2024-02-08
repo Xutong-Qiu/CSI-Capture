@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/homebrew/include"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            // Changed to g++ to match your Makefile compiler
+            "compilerPath": "/usr/bin/g++",
+            // Set to c++11 to match your CXXFLAGS in Makefile
+            "cStandard": "c17",
+            "cppStandard": "c++11",
+            // Adjusted to match g++ on macOS, might need to change if using ARM-based Mac
+            "intelliSenseMode": "macos-gcc-x64"
+        }
+    ],
+    "version": 4
+}

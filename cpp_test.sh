@@ -1,4 +1,7 @@
 #!/bin/bash
+
+make 
+
 osascript <<EOF
 tell application "Terminal"
     set pi1Listening to do script "socat TCP-LISTEN:1234,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test1.pcap"
@@ -21,7 +24,6 @@ echo "start listening Pi2..."
 
 sleep 1
 
-make 
 ./a.out &
 
 sleep 5
@@ -30,5 +32,4 @@ killall Terminal
 
 ./read_output
 
-cat pi1_output.txt | grep packets
-cat pi2_output.txt | grep packets
+grep "packets" output*.txt

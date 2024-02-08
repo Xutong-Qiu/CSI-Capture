@@ -10,8 +10,8 @@ all: read_output a.out
 read_output: read_output.cpp
 	$(CXX) $(CXXFLAGS) -o read_output read_output.cpp $(LDFLAGS) $(LDLIBS)
 
-a.out: ssh_test.cpp
-	$(CXX) $(CXXFLAGS) -o a.out ssh_test.cpp $(LDFLAGS) $(LDLIBS)
+a.out: ssh_execute.cpp
+	$(CXX) $(CXXFLAGS) -o a.out ssh_execute.cpp $(LDFLAGS) $(LDLIBS)
 
 .PHONY: clean
 

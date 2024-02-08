@@ -4,7 +4,6 @@
 #include <thread>
 #include <future>
 #include <fstream>
-#include <string>
 #include "constants.h"
 
 int execute_command(ssh_channel channel, const char* command){
@@ -85,25 +84,10 @@ int main() {
     }
     for(size_t i = 0; i< num_host; ++i){
         auto start = std::chrono::high_resolution_clock::now();
-        std::future<int> pi1_rc_future = std::async(execute_command, channels[i], "cat output.txt");
+        std::future<int> pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 36 80 1 1 JCAS3 > output.txt 2>&1 ");
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double, std::milli> latency = end - start;
         std::cout << "Command execution request latency: " << latency.count() << " ms" << std::endl;
-    }
-    //get output
-    std::ofstream outfiles[num_host];
-    for(size_t i = 0; i < num_host; ++i){
-        std::string fileName = "output"+ std::to_string(i) +".txt";
-        outfiles[i].open(fileName);
-        char buffer[256];
-        int nbytes;
-        nbytes = ssh_channel_read(channels[i], buffer, sizeof(buffer), 0);
-        while (nbytes > 0) {
-            // Write buffer to file instead of stdout
-            outfiles[i].write(buffer, nbytes);
-            nbytes = ssh_channel_read(channels[i], buffer, sizeof(buffer), 0);
-        }
-        outfiles[i].close();
     }
 
     // Cleanup
