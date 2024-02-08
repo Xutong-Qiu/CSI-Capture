@@ -2,27 +2,24 @@
 
 make 
 
-osascript <<EOF
+rm test*.pcap
+rm output*.txt
+
+for i in {1..2}; do
+    # Calculate port number for this iteration
+    port=$((startPort + i - 1))
+    # Define the output file based on the iteration
+    outputFile="/Users/qiuxutong/Desktop/Capstone/test${i}.pcap"
+    
+    osascript <<EOF
 tell application "Terminal"
-    set pi1Listening to do script "socat TCP-LISTEN:1234,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test1.pcap"
+    set commandString to "socat TCP-LISTEN:1234,reuseaddr - > $outputFile"
+    set newWindow to do script commandString
     delay 1 # Give the window a second to open
 end tell
 EOF
 
-echo "start listening Pi1..."
-
-sleep 1
-
-osascript <<EOF
-tell application "Terminal"
-    set pi2Listening to do script "socat TCP-LISTEN:12345,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test2.pcap"
-    delay 1 # Give the window a second to open
-end tell
-EOF
-
-echo "start listening Pi2..."
-
-sleep 1
+done
 
 ./a.out &
 

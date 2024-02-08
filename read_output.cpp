@@ -22,11 +22,9 @@ void init_sessions(ssh_session* sessions, size_t size){
 }
 
 void set_options(ssh_session* sessions, size_t size, const char** addrs, const char** usernames){
-    for(size_t i = 0; i< size; ++i){
+    for(size_t i = 0; i < size; ++i){
         ssh_options_set(sessions[i], SSH_OPTIONS_HOST, addrs[i]);
         ssh_options_set(sessions[i], SSH_OPTIONS_USER, usernames[i]);
-        ssh_options_set(sessions[i], SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
-        ssh_options_set(sessions[i], SSH_OPTIONS_PORT, &port);
     }
 }
 

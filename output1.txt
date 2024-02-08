@@ -8,7 +8,6 @@ mcp -c 36/80 -C 1 -N 1 -m a0:36:bc:b2:0b:94
 ifconfig wlan0 up
 nexutil -I wlan0 -s500 -b -l34 -v KuABEQAAAQCgNryyC5QAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 iw dev  wlan0 interface add mon0 type monitor
-command failed: Operation not supported (-95)
 ip link set mon0 up
 tcpdump -i wlan0 port 5500 -l -w - | socat - TCP:192.168.51.203:1234
 

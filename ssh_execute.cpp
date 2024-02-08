@@ -24,8 +24,6 @@ void set_options(ssh_session* sessions, size_t size, const char** addrs, const c
     for(size_t i = 0; i< size; ++i){
         ssh_options_set(sessions[i], SSH_OPTIONS_HOST, addrs[i]);
         ssh_options_set(sessions[i], SSH_OPTIONS_USER, usernames[i]);
-        ssh_options_set(sessions[i], SSH_OPTIONS_LOG_VERBOSITY, &verbosity);
-        ssh_options_set(sessions[i], SSH_OPTIONS_PORT, &port);
     }
 }
 
