@@ -10,9 +10,9 @@ nexutil -I wlan0 -s500 -b -l34 -v KuABEQAAAQCgNryyC5QAAAAAAAAAAAAAAAAAAAAAAAAAAA
 iw dev  wlan0 interface add mon0 type monitor
 command failed: Operation not supported (-95)
 ip link set mon0 up
-tcpdump -i wlan0 port 5500 -l -w - | socat - TCP:192.168.51.203:1235
+tcpdump -i wlan0 port 5500 -l -w - | socat - TCP:192.168.51.203:1237
 
-2024/02/08 15:06:13 socat[2866] E connect(5, AF=2 192.168.51.203:1235, 16): Connection refused
+2024/02/08 15:06:13 socat[5594] E connect(5, AF=2 192.168.51.203:1237, 16): Connection refused
 tcpdump: listening on wlan0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
 1 packet captured
 10 packets received by filter

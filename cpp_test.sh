@@ -5,20 +5,18 @@ make
 rm test*.pcap
 rm output*.txt
 
-for i in {1..2}; do
-    # Calculate port number for this iteration
-    port=$((startPort + i - 1))
+startPort=1234
+for i in {1..5}; do
     # Define the output file based on the iteration
     outputFile="/Users/qiuxutong/Desktop/Capstone/test${i}.pcap"
-    
+    windowName="capture${i}"
+    port=$((startPort + i))
     osascript <<EOF
 tell application "Terminal"
-    set commandString to "socat TCP-LISTEN:1234,reuseaddr - > $outputFile"
-    set newWindow to do script commandString
-    delay 1 # Give the window a second to open
+    set windowName to do script "socat TCP-LISTEN:$port,reuseaddr - > $outputFile"
+    delay 1 
 end tell
 EOF
-
 done
 
 ./a.out &

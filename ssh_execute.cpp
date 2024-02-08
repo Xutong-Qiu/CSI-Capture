@@ -42,7 +42,6 @@ void connect_and_authenticate(ssh_session* sessions, size_t size, int* rc, const
             ssh_free(sessions[i]);
             exit(-1);
         }
-
     }
 }
 
