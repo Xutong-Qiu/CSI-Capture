@@ -1,0 +1,42 @@
+# Ignore build folders
+/build/
+/cmake-build-debug/
+/cmake-build-release/
+
+# Ignore object files, archives (.a), and shared libraries (.so, .dll)
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# Ignore IDE specific files
+/.idea/
+*.user
+*.userprefs
+.vscode/
+*.sublime-workspace
+
+# Ignore specific configuration files
+*.swp
+*~
+.DS_Store
+
+# Ignore executable files
+*.exe
+*.out
+*.app
+/a.out
+
+# Ignore dependency folders (example for C++ projects using package managers like conan)
+/conan_data/
+/vendor/
+
+# Ignore generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+output*
+*.pcap
