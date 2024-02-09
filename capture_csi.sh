@@ -1,7 +1,6 @@
 #!/bin/bash
 
 make 
-
 rm test*.pcap
 rm output*.txt
 
@@ -18,6 +17,20 @@ tell application "Terminal"
 end tell
 EOF
 done
+
+./a.out &
+
+#change here to modify capture length
+sleep 10
+
+echo "Terminating..."
+killall Terminal
+./read_output
+
+grep "packets" output*.txt
+
+
+# unused test code
 # socat TCP-LISTEN:1235,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test1.pcap&
 # socat_pid1=$!
 # socat TCP-LISTEN:1236,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test2.pcap&
@@ -29,17 +42,10 @@ done
 # socat TCP-LISTEN:1239,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test5.pcap&
 # socat_pid5=$!
 # sleep 2
-./a.out &
 
-sleep 10
-echo "Terminating..."
-killall Terminal
 # echo "here"
 # kill $socat_pid1
 # kill $socat_pid2
 # kill $socat_pid3
 # kill $socat_pid4
 # kill $socat_pid5
-./read_output
-
-grep "packets" output*.txt
