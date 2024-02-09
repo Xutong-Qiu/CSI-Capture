@@ -18,13 +18,28 @@ tell application "Terminal"
 end tell
 EOF
 done
-
+# socat TCP-LISTEN:1235,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test1.pcap&
+# socat_pid1=$!
+# socat TCP-LISTEN:1236,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test2.pcap&
+# socat_pid2=$!
+# socat TCP-LISTEN:1237,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test3.pcap&
+# socat_pid3=$!
+# socat TCP-LISTEN:1238,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test4.pcap&
+# socat_pid4=$!
+# socat TCP-LISTEN:1239,reuseaddr - > /Users/qiuxutong/Desktop/Capstone/test5.pcap&
+# socat_pid5=$!
+# sleep 2
 ./a.out &
 
-sleep 5
+sleep 10
 echo "Terminating..."
 killall Terminal
-
+# echo "here"
+# kill $socat_pid1
+# kill $socat_pid2
+# kill $socat_pid3
+# kill $socat_pid4
+# kill $socat_pid5
 ./read_output
 
 grep "packets" output*.txt

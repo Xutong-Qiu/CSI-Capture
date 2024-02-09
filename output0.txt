@@ -12,8 +12,7 @@ command failed: Operation not supported (-95)
 ip link set mon0 up
 tcpdump -i wlan0 port 5500 -l -w - | socat - TCP:192.168.51.203:1236
 
-2024/02/08 15:06:13 socat[4056] E connect(5, AF=2 192.168.51.203:1236, 16): Connection refused
 tcpdump: listening on wlan0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
 1 packet captured
-13 packets received by filter
+12 packets received by filter
 0 packets dropped by kernel
