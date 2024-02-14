@@ -62,8 +62,8 @@ if [ "$MACADDR" = "JCAS3" ]; then
   echo "JCAS3 MACADDR: a0:36:bc:b2:0b:94"
 fi
 if [ "$MACADDR" = "JCAS4" ]; then
-  MACADDR="A0:36:BC:B2:0F:94"
-  echo "JCAS4 MACADDR: A0:36:BC:B2:0F:94"
+  MACADDR="00:12:34:56:78:9b"
+  echo "JCAS4 MACADDR: 00:12:34:56:78:9b"
 fi
 
 case "$MACADDR" in
