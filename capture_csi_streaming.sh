@@ -18,7 +18,7 @@ end tell
 EOF
 done
 
-./a.out &
+./a.out
 
 #change here to modify capture length
 sleep 10

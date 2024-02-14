@@ -80,21 +80,22 @@ int main() {
             return rc[i];
         }
     }
-    for(size_t i = 0; i< num_host; ++i){
+ for(size_t i = 0; i< num_host; ++i){
         auto start = std::chrono::high_resolution_clock::now();
-        //std::future<int> pi1_rc_future = std::async(execute_command, channels[i], "sudo tcpdump -i wlan0 dst port 5500 -vv -w output.pcap -c 100");
-        if(i+1 == 1 || i+1 == 4){
-            std::future<int> pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 36 80 1 1 JCAS3 > output.txt 2>&1 ");
-        }else if(i+1 == 2 || i+1 == 5){
-            std::future<int> pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 3 80 1 1 JCAS3 > output.txt 2>&1 ");
+        std::future<int> pi1_rc_future;// = std::async(execute_command, channels[i], "sudo tcpdump -i wlan0 dst port 5500 -vv -w output.pcap -c 100");
+        if((i+1 == 1) || (i+1 == 4)){
+            pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 36 80 1 1 JCAS3 > output.txt 2>&1 ");
+        }else if((i+1 == 2) || (i+1 == 5)){
+            pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 3 80 1 1 JCAS3 > output.txt 2>&1 ");
         }else{
-            std::future<int> pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 149 80 1 1 JCAS4 > output.txt 2>&1 ");
+            pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 149 80 1 1 JCAS4 > output.txt 2>&1 ");
         }
-        //std::future<int> pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 149 80 1 1 JCAS4 > output.txt 2>&1 ");
+        //pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 36 80 1 1 JCAS3 > output.txt 2>&1 ");
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double, std::milli> latency = end - start;
         std::cout << "Command execution request latency: " << latency.count() << " ms" << std::endl;
     }
+
 
     // Cleanup
     free_resources(sessions, channels, num_host);
