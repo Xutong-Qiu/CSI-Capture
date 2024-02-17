@@ -110,7 +110,7 @@ int main() {
 
     std::cout << "Capturing and Livestreaming..." << std::endl;
     for(size_t i = 0; i< num_host; ++i){
-        auto start = std::chrono::high_resolution_clock::now();
+        // auto start = std::chrono::high_resolution_clock::now();
         std::future<int> pi1_rc_future;// = std::async(execute_command, channels[i], "sudo tcpdump -i wlan0 dst port 5500 -vv -w output.pcap -c 100");
         
         // setup sniffer
@@ -135,9 +135,9 @@ int main() {
         // pi1_rc_future = std::async(execute_command, channels[i], "sudo shutdown now");
 
 
-        auto end = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double, std::milli> latency = end - start;
-        std::cout << "Command execution request latency: " << latency.count() << " ms" << std::endl;
+        // auto end = std::chrono::high_resolution_clock::now();
+        // std::chrono::duration<double, std::milli> latency = end - start;
+        // std::cout << "Command execution request latency: " << latency.count() << " ms" << std::endl;
     }
 
 

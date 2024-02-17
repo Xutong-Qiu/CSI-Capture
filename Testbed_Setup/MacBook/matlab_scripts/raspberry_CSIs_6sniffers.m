@@ -55,7 +55,7 @@ for i = 1:N_sniffers
     if i == 2 || i == 5
         BW = 20;
     end
-    filepath = sprintf('../outputs/sniffer%d.pcap', i);
+    filepath = sprintf('../outputs/static_4m/sniffer%d.pcap', i);
     [time_epoch_nexmon, framecontrol_nexmon, csis_nexmon] = readNexmonpcap(BW, filepath);
     framecontrols{i} = framecontrol_nexmon;
     time_epochs{i} = time_epoch_nexmon;
