@@ -1,6 +1,6 @@
 #!/bin/bash
 
-destination_dir="./livestream.sh"
+destination_dir="./livestream_autostop.sh"
 addr=(91 195 196 148 167 161)
 for i in "${!addr[@]}"; do
     host_ip="192.168.51.${addr[$i]}"

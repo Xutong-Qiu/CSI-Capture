@@ -6,6 +6,8 @@ rm output*.txt
 
 output_dir="/Users/gaofengdong/Desktop/JCAS/Testbed_Setup/MacBook/outputs"
 
+# exit 0
+
 startPort=1230
 for i in {1..6}; do
     # Define the output file based on the iteration
@@ -24,14 +26,23 @@ date
 ./a.out
 
 #change here to modify capture length
-sleep 23
+sleep 8
 date
+echo ""
 echo "Terminating and saving .pcap files..."
 killall Terminal
 
+#read output.txt from sniffers
 echo "Output..."
 ./read_output
-grep "captured" outputs/output*.txt
+# grep "captured" outputs/output*.txt
+for i in {1..6}; do
+    printf "Sniffer${i}: "
+    awk 'NR==3 {printf "Start time:%s ", $2}' "${output_dir}/output$((i)).txt"
+    awk 'NR==11 {printf "End time:%s;  ", $2}' "${output_dir}/output$((i)).txt"
+    grep "captured" outputs/output${i}.txt
+done
+
 
 #not working
 # #read output.txt from sniffers

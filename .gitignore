@@ -1,2 +1,4 @@
 *.pcap
 Testbed_Setup/MacBook/outputs
+Testbed_Setup/MacBook/outputs/
+Testbed_Setup/MacBook/outputs/*.txt

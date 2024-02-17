@@ -103,12 +103,14 @@ int main() {
     // }
 
     std::string input;
-    std::cout << "Waiting for starting capturing:(any inputs) ";
+    std::cout << "\nConnected!";
+    std::cout << "\nWaiting for starting capturing:(any inputs) ";
     std::getline(std::cin, input); // Waiting for input
+    
     std::time_t now = std::time(nullptr);
-    std::cout << "Current time: " << std::ctime(&now);
+    std::cout << std::ctime(&now);
+    std::cout << "\nCapturing and Livestreaming..." << std::endl;
 
-    std::cout << "Capturing and Livestreaming..." << std::endl;
     for(size_t i = 0; i< num_host; ++i){
         // auto start = std::chrono::high_resolution_clock::now();
         std::future<int> pi1_rc_future;// = std::async(execute_command, channels[i], "sudo tcpdump -i wlan0 dst port 5500 -vv -w output.pcap -c 100");
@@ -123,12 +125,12 @@ int main() {
         // }
 
         // give permission to execute the script
-        // pi1_rc_future = std::async(execute_command, channels[i], "chmod +x ./livestream.sh");
+        // pi1_rc_future = std::async(execute_command, channels[i], "chmod +x ./livestream_autostop.sh");
 
         // capture and livestream
-        std::string command = "sudo ./livestream.sh " +std::string(socat_dst_ip)+ " " +std::string(socat_dst_ports[i])+ " " +std::string(capture_time)+ " > output.txt 2>&1";
+        std::string command = "sudo ./livestream_autostop.sh " +std::string(socat_dst_ip)+ " " +std::string(socat_dst_ports[i])+ " " +std::string(capture_time)+ " > output.txt 2>&1";
         const char* cString = command.c_str();
-        std::cout << cString << std::endl;
+        // std::cout << cString << std::endl;
         pi1_rc_future = std::async(execute_command, channels[i], cString);
 
         // shutdown all sniffers
