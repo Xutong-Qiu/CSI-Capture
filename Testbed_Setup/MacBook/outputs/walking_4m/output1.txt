@@ -1,0 +1,18 @@
+Run sudo ./quick_set_livestream.sh channel bandwidth rxcore rxnss [macaddr] [frametype]
+JCAS3 MACADDR: a0:36:bc:b2:0b:94
+Monitor all frame types
+FRAMETYPE: empty-all; 0x80-Beacon; 0x08-BroadcastData; 0x88-QoSData; 
+FRAMETYPE: 0x54-NDPAnnouncement; 0x94-BlockAck; 0xb4-RequestToSend
+mcp -c 36/80 -C 1 -N 1 -m a0:36:bc:b2:0b:94
+    Output: KuABEQAAAQCgNryyC5QAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+ifconfig wlan0 up
+nexutil -I wlan0 -s500 -b -l34 -v KuABEQAAAQCgNryyC5QAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+iw dev  wlan0 interface add mon0 type monitor
+command failed: Operation not supported (-95)
+ip link set mon0 up
+tcpdump -i wlan0 port 5500 -l -w - | socat - TCP:192.168.51.200:1231
+
+tcpdump: listening on wlan0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+274 packets captured
+285 packets received by filter
+0 packets dropped by kernel

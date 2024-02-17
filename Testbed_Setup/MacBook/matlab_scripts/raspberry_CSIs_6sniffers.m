@@ -55,7 +55,7 @@ for i = 1:N_sniffers
     if i == 2 || i == 5
         BW = 20;
     end
-    filepath = sprintf('../outputs/walking/sniffer%d.pcap', i);
+    filepath = sprintf('../outputs/sniffer%d.pcap', i);
     [time_epoch_nexmon, framecontrol_nexmon, csis_nexmon] = readNexmonpcap(BW, filepath);
     framecontrols{i} = framecontrol_nexmon;
     time_epochs{i} = time_epoch_nexmon;
@@ -65,7 +65,7 @@ for i = 1:N_sniffers
         csis_nexmon(:,126:132) = 0;
         csis_nexmon(:,1:3) = 0;
     elseif BW == 20
-        % csis_nexmon(:,1) = 0;
+        csis_nexmon(:,1) = 0;
         csis_nexmon(:,29:36) = 0;
         % 1, 29-36,
     end
@@ -74,9 +74,10 @@ for i = 1:N_sniffers
 %         BW = 20;
 %         csis_nexmon = csis_nexmon(:,128:191);
 %     end
+    
     CSIs{i} = csis_nexmon;
     CSIs_diff{i} = csis_nexmon - csis_nexmon(1,:);
-    fprintf('\nTotal frame number: %d \n', length(csis_nexmon));
+    fprintf('---Sniffer:%d; Total frame number: %d ---\n\n', i, length(csis_nexmon));
 end
 
 
@@ -91,6 +92,11 @@ for i = 1:N_sniffers
 %         BW = 20;
 %         csis_nexmon = csis_nexmon(:,128:191);
 %     end
+    % only 20MHz valid data for most cases
+    if i == 1 || i == 4
+        BW = 20;
+        CSIs{i} = CSIs{i}(:,128:191);
+    end
     subplot(2,3,i)
     plot_csidata_1sniffer('CSIs', CSIs{i}, 'BW', BW, 'normalize', true);
     ylabel('Subcarriers')
@@ -256,7 +262,7 @@ function [timestamps_valid, frametypes_valid_swap_typecast, csi_valid] = readNex
             break;
         end
         if f.header.orig_len-(HOFFSET-1)*4 ~= NFFT*4 % wrong when capturing
-            disp(['skip frame ', num2str(k), ' with wrong size when capturing']); 
+            disp(['    skip frame ', num2str(k), ' with wrong size when capturing']); 
             rowsToRemove = [rowsToRemove,k];
             k = k + 1;
             continue;
@@ -273,7 +279,7 @@ function [timestamps_valid, frametypes_valid_swap_typecast, csi_valid] = readNex
     
         rawCSIs = f.payload_CSIs; % UDP payload/frame
         if NFFT ~= length(rawCSIs) % wrong when storing/livestreaming
-            disp(['skip frame ', num2str(k), ' with wrong size when storing']); 
+            disp(['    skip frame ', num2str(k), ' with wrong size when storing']); 
             rowsToRemove = [rowsToRemove,k];
             k = k + 1;
             continue;

@@ -31,4 +31,4 @@ killall Terminal
 
 echo "Output..."
 ./read_output
-grep "packet" outputs/output*.txt
+grep "captured" outputs/output*.txt
