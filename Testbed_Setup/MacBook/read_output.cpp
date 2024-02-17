@@ -90,7 +90,7 @@ int main() {
     //get output
     std::ofstream outfiles[num_host];
     for(size_t i = 0; i < num_host; ++i){
-        std::string fileName = "output"+ std::to_string(i+1) +".txt";
+        std::string fileName = std::string(output_dir)+ "/output"+ std::to_string(i+1) +".txt";
         outfiles[i].open(fileName);
         char buffer[256];
         int nbytes;

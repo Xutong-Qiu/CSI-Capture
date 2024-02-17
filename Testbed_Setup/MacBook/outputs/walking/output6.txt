@@ -1,0 +1,12 @@
+tcpdump -i wlan0 port 5500 -l -w - | socat - TCP:192.168.51.200:1236
+
+Fri 16 Feb 16:22:20 PST 2024
+root      1778  0.0  0.1  10032  1544 ?        D    16:22   0:00 tcpdump -i wlan0 port 5500 -l -w -
+root      1779  0.0  0.1   7612  1692 ?        S    16:22   0:00 socat - TCP:192.168.51.200:1236
+root      1781  0.0  0.0   7452   500 ?        S    16:22   0:00 grep -E socat|tcpdump
+tcpdump: listening on wlan0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+1815 packets captured
+1842 packets received by filter
+0 packets dropped by kernel
+root      1786  0.0  0.0   7452   508 ?        S    16:22   0:00 grep -E socat|tcpdump
+Fri 16 Feb 16:22:42 PST 2024
