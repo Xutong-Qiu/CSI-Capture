@@ -1,10 +1,9 @@
 #!/bin/bash
+output_dir="/Users/gaofengdong/Desktop/JCAS/Testbed_Setup/MacBook/outputs"
 
 make 
-rm test*.pcap
-rm output*.txt
-
-output_dir="/Users/gaofengdong/Desktop/JCAS/Testbed_Setup/MacBook/outputs"
+rm ./outputs/*.pcap
+rm ./outputs/*.txt
 
 # exit 0
 
@@ -17,16 +16,16 @@ for i in {1..6}; do
     osascript <<EOF
 tell application "Terminal"
     set windowName to do script "socat TCP-LISTEN:$port,reuseaddr - > $outputFile"
-    delay 0.1
+    delay 0.5
 end tell
 EOF
 done
 
 date
-./a.out
+./ssh_execute
 
 #change here to modify capture length
-sleep 8
+sleep 13
 date
 echo ""
 echo "Terminating and saving .pcap files..."

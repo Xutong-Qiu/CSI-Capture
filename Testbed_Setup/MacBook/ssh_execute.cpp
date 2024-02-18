@@ -130,7 +130,7 @@ int main() {
         // capture and livestream
         std::string command = "sudo ./livestream_autostop.sh " +std::string(socat_dst_ip)+ " " +std::string(socat_dst_ports[i])+ " " +std::string(capture_time)+ " > output.txt 2>&1";
         const char* cString = command.c_str();
-        // std::cout << cString << std::endl;
+        std::cout << cString << std::endl;
         pi1_rc_future = std::async(execute_command, channels[i], cString);
 
         // shutdown all sniffers

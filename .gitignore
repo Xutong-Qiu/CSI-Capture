@@ -1,4 +1,8 @@
 *.pcap
+.DS_Store
 Testbed_Setup/MacBook/outputs
 Testbed_Setup/MacBook/outputs/
 Testbed_Setup/MacBook/outputs/*.txt
+Testbed_Setup/MacBook/a.out
+Testbed_Setup/MacBook/read_output
+Testbed_Setup/MacBook/ssh_execute
