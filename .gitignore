@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Ignore build folders
 /build/
 /cmake-build-debug/
@@ -41,3 +42,14 @@ cmake_install.cmake
 Makefile
 output*
 *.pcap
+=======
+*.pcap
+.DS_Store
+*.DS_Store
+Testbed_Setup/MacBook/outputs
+Testbed_Setup/MacBook/outputs/
+Testbed_Setup/MacBook/outputs/*.txt
+Testbed_Setup/MacBook/a.out
+Testbed_Setup/MacBook/read_output
+Testbed_Setup/MacBook/ssh_execute
+>>>>>>> nesl_target/main
