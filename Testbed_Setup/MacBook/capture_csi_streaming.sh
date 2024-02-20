@@ -14,8 +14,9 @@ for i in {1..6}; do
     windowName="capture${i}"
     port=$((startPort + i))
     osascript <<EOF
+    
 tell application "Terminal"
-    set windowName to do script "socat TCP-LISTEN:$port,reuseaddr - > $outputFile"
+    set windowName to do script "socat TCP-LISTEN:$port,reuseaddr - | pv -trab > $outputFile"
     delay 0.5
 end tell
 EOF
