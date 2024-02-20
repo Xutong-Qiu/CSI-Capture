@@ -11,7 +11,9 @@ This project requires the `libssh` C++ library and C++11 or later.
 ### Running the Capture Script
 
 1. Use any third-party terminal application (ensure its process name is not "Terminal").
-2. Run the script `./capture_csi.sh`. If you need to change the capture length, modify the `sleep` command within `capture_csi.sh`.
+2. Run the script `./pi_code_setup.sh` and enter your ip to set up scripts for Pis.
+3. Run the script `./setup.sh` to copy scripts to Pis.
+4. Run the script `./capture_csi.sh`. If you need to change the capture length, modify the `sleep` command within `capture_csi.sh`.
 
 ### Configuring SSH Hosts
 
