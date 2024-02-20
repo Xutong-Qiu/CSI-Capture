@@ -1,33 +1,48 @@
 #!/bin/bash
+output_dir="${PWD}/outputs"
 
 make 
-rm test*.pcap
-rm output*.txt
+rm ./outputs/*.pcap
+rm ./outputs/*.txt
+
+# exit 0
 
 startPort=1230
 for i in {1..6}; do
     # Define the output file based on the iteration
-    outputFile="${PWD}/test${i}.pcap"
+    outputFile="$output_dir/sniffer${i}.pcap"
     windowName="capture${i}"
     port=$((startPort + i))
     osascript <<EOF
+
 tell application "Terminal"
-    set windowName to do script "socat TCP-LISTEN:$port,reuseaddr - > $outputFile"
-    delay 1 
+    set windowName to do script "socat TCP-LISTEN:$port,reuseaddr - | pv -trab > $outputFile"
+    delay 0.5
 end tell
 EOF
 done
 
-./a.out
+date
+./ssh_execute
 
 #change here to modify capture length
 sleep 10
 
-echo "Terminating..."
+date
+echo ""
+echo "Terminating and saving .pcap files..."
 killall Terminal
+
+echo "Output..."
 ./read_output
 
-grep "packets" output*.txt
+# grep "captured" outputs/output*.txt
+for i in {1..6}; do
+    printf "Sniffer${i}: "
+    awk 'NR==3 {printf "Start time:%s ", $2}' "${output_dir}/output$((i)).txt"
+    awk 'NR==11 {printf "End time:%s;  ", $2}' "${output_dir}/output$((i)).txt"
+    grep "captured" outputs/output${i}.txt
+done
 
 
 # unused test code
