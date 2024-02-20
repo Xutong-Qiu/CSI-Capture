@@ -26,7 +26,7 @@ date
 ./ssh_execute
 
 #change here to modify capture length
-sleep 10
+sleep 23
 
 date
 echo ""

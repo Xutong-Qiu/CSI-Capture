@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Ignore build folders
 /build/
 /cmake-build-debug/
@@ -29,7 +29,6 @@
 *.out
 *.app
 /a.out
-read_output
 
 # Ignore dependency folders (example for C++ projects using package managers like conan)
 /conan_data/
@@ -42,8 +41,6 @@ cmake_install.cmake
 Makefile
 output*
 *.pcap
-=======
-*.pcap
 .DS_Store
 *.DS_Store
 Testbed_Setup/MacBook/outputs
@@ -52,4 +49,3 @@ Testbed_Setup/MacBook/outputs/*.txt
 Testbed_Setup/MacBook/a.out
 Testbed_Setup/MacBook/read_output
 Testbed_Setup/MacBook/ssh_execute
->>>>>>> nesl_target/main

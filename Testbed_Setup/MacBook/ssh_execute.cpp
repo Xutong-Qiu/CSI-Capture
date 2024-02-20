@@ -85,23 +85,6 @@ int main() {
         }
     }
 
-    // std::cout << "Executing..." << std::endl;
-    // for(size_t i = 0; i< num_host; ++i){
-    //     auto start = std::chrono::high_resolution_clock::now();
-    //     std::future<int> pi1_rc_future;// = std::async(execute_command, channels[i], "sudo tcpdump -i wlan0 dst port 5500 -vv -w output.pcap -c 100");
-    //     if((i+1 == 1) || (i+1 == 4)){
-    //         pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 36 80 1 1 JCAS3 > output.txt 2>&1 ");
-    //     }else if((i+1 == 2) || (i+1 == 5)){
-    //         pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 3 20 1 1 JCAS3 > output.txt 2>&1 ");
-    //     }else{
-    //         pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 149 80 1 1 JCAS4 > output.txt 2>&1 ");
-    //     }
-    //     // pi1_rc_future = std::async(execute_command, channels[i], "sudo ./quick_setup_livestream_5GHz.sh 36 80 1 1 JCAS3 > output.txt 2>&1 ");
-    //     auto end = std::chrono::high_resolution_clock::now();
-    //     std::chrono::duration<double, std::milli> latency = end - start;
-    //     std::cout << "Command execution request latency: " << latency.count() << " ms" << std::endl;
-    // }
-
     std::string input;
     std::cout << "\nConnected!";
     std::cout << "\nWaiting for starting capturing:(any inputs) ";
@@ -128,10 +111,10 @@ int main() {
         // pi1_rc_future = std::async(execute_command, channels[i], "chmod +x ./livestream_autostop.sh");
 
         // capture and livestream
-        std::string command = "sudo ./livestream_autostop.sh " +std::string(socat_dst_ip)+ " " +std::string(socat_dst_ports[i])+ " " +std::string(capture_time)+ " > output.txt 2>&1";
-        const char* cString = command.c_str();
-        std::cout << cString << std::endl;
-        pi1_rc_future = std::async(execute_command, channels[i], cString);
+        const char* command = "sudo ./livestream.sh > output.txt 2>&1";
+        // const char* cString = command.c_str();
+        // std::cout << cString << std::endl;
+        pi1_rc_future = std::async(execute_command, channels[i], command);
 
         // shutdown all sniffers
         // pi1_rc_future = std::async(execute_command, channels[i], "sudo shutdown now");

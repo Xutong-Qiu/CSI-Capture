@@ -57,27 +57,18 @@ if [ "$MACADDR" = "JCAS1" ]; then
   MACADDR="a0:36:bc:b2:1d:cc"
   echo "JCAS1 MACADDR: a0:36:bc:b2:1d:cc"
 fi
-if [ "$MACADDR" = "JCAS3" ]; then
+if [ "$MACADDR" = "JCAS3-5G" ]; then
   MACADDR="a0:36:bc:b2:0b:94"
   echo "JCAS3 MACADDR: a0:36:bc:b2:0b:94"
+fi
+if [ "$MACADDR" = "JCAS3-2.4G" ]; then
+  MACADDR="a0:36:bc:b2:0b:90"
+  echo "JCAS3 MACADDR: a0:36:bc:b2:0b:90"
 fi
 if [ "$MACADDR" = "JCAS4" ]; then
   MACADDR="A0:36:BC:B2:0F:94"
   echo "JCAS4 MACADDR: A0:36:BC:B2:0F:94"
 fi
-
-case "$MACADDR" in
-"JCAS1")
-  MACADDR="a0:36:bc:b2:1d:cc"
-  echo "JCAS1 MACADDR: $MACADDR"
-  ;;
-"JCAS3")
-  MACADDR="a0:36:bc:b2:0b:94"
-  echo "JCAS3 MACADDR: $MACADDR"
-  ;;
-# *)
-  # echo "MACADDR: $MACADDR"
-esac
 
 FRAMETYPE=$6
 if [ "$FRAMETYPE" = "" ]; then
@@ -115,18 +106,6 @@ iw dev ${IFACE5GHZ} interface add mon0 type monitor
 echo "ip link set mon0 up"
 ip link set mon0 up
 
-# live stream data
-# LIVEIPADDR=$7
-# if [ "$LIVEIPADDR" = "" ]; then
-  # echo "No destination IP addr of live streaming"
-  # exit 1
-# fi
 
-
-
-echo "tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:123:1236"
-echo ""
-
-tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:123:1236
 
 
