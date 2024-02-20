@@ -4,7 +4,7 @@ destination_dir="./quick_setup_livestream_5GHz.sh"
 addr=(91 195 196 148 167 161)
 for i in "${!addr[@]}"; do
     host_ip="192.168.51.${addr[$i]}"
-    file_path="/Users/qiuxutong/Desktop/Capstone/pi\ code/$(($i + 1))quick_setup_livestream_5GHz.sh"
+    file_path="./PiCode/$(($i + 1))quick_setup_livestream_5GHz.sh"
     echo $destination_dir
     scp "$file_path" "pi@${host_ip}:${destination_dir}"
     echo "File has been copied to ${host_ip}:${destination_dir}"

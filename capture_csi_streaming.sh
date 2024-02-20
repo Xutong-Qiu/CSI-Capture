@@ -7,7 +7,7 @@ rm output*.txt
 startPort=1230
 for i in {1..6}; do
     # Define the output file based on the iteration
-    outputFile="/Users/qiuxutong/Desktop/Capstone/test${i}.pcap"
+    outputFile="${PWD}/test${i}.pcap"
     windowName="capture${i}"
     port=$((startPort + i))
     osascript <<EOF

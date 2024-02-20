@@ -62,8 +62,8 @@ if [ "$MACADDR" = "JCAS3" ]; then
   echo "JCAS3 MACADDR: a0:36:bc:b2:0b:94"
 fi
 if [ "$MACADDR" = "JCAS4" ]; then
-  MACADDR="00:12:34:56:78:9b"
-  echo "JCAS4 MACADDR: 00:12:34:56:78:9b"
+  MACADDR="A0:36:BC:B2:0F:94"
+  echo "JCAS4 MACADDR: A0:36:BC:B2:0F:94"
 fi
 
 case "$MACADDR" in
@@ -124,8 +124,9 @@ ip link set mon0 up
 
 
 
-echo "tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:192.168.51.203:1236"
+echo "tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:222:1235"
 echo ""
 
-tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:192.168.51.203:1236
+tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:222:1235
+
 

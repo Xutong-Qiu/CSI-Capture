@@ -124,8 +124,9 @@ ip link set mon0 up
 
 
 
-echo "tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:192.168.51.203:1231"
+echo "tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:IP_ADDRESS_PLACEHOLDER:PORT_PLACEHOLDER"
 echo ""
 
-tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:192.168.51.203:1231
+tcpdump -i ${IFACE5GHZ} port 5500 -l -w - | socat - TCP:IP_ADDRESS_PLACEHOLDER:PORT_PLACEHOLDER
+
 
